@@ -16,3 +16,4 @@ steps:
   inputs:
     targetType: 'inline'
     script: '& Powershell.exe -file "C:\Temp\Deploy_RED_to_REDPowershell.ps1"'
+    errorActionPreference: 'continue'
