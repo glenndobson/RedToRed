@@ -7,10 +7,12 @@ trigger:
 - main
 
 pool: Default
+#  vmImage: ubuntu-latest
 
 steps:
 
-- script: 
+ 
 - task: PowerShell@2
   inputs:
-    filePath: 'Deploy_RED_to_REDPowershell.ps1'
+    targetType: 'inline'
+    script: '& Powershell.exe -file "C:\Temp\Deploy_RED_to_REDPowershell.ps1"'
