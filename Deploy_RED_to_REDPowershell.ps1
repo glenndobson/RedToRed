@@ -61,7 +61,7 @@ if (-not (Test-Path -LiteralPath $APP_DIR)) {
 $PS_STEP = 300 
 $PS_Description = "Build Red application"
 TRY {
-    $output = & "$RootFolder\med.exe" --create-deploy-app --meta-dsn "$SourceDSN" --meta-dsn-arch "$RED_ARC" --output-dir "$APP_DIR" --app-version "$APP_VER" --app-number "$APP_NUM" --project-name "$ReleaseFolder"  | Out-String
+    $output = & "$RootFolder\med.exe" --create-deploy-app --meta-dsn "$SourceDSN" --meta-dsn-arch "$RED_ARC" --output-dir "$APP_DIR" --app-version "$APP_VER" --app-number "$APP_NUM" --project-name "$ReleaseFolder"  > $AppLogFile 2>&1
          
     $RESULT_MSG = -join($RESULT_MSG,"Generated Application for $DocFolder`n")
     $RESULT_MSG = -join($RESULT_MSG,"$output`n")
@@ -82,7 +82,7 @@ TRY {
     $TGT_ARG =""
     $RED_USR = -join("--red-user-name ", """Glenn Dobson""")
 
-    $output = & "$RootFolder\RedCli.exe" deployment deploy --meta-dsn $TGT_DSN --meta-dsn-arch $RED_ARC $TGT_ARG --app-number $APP_NUM --app-version $APP_VER --app-dir $APP_DIR  > $AppLogFile 2>&1
+    $output = & "$RootFolder\RedCli.exe" deployment deploy --meta-dsn $TGT_DSN --meta-dsn-arch $RED_ARC $TGT_ARG --app-number $APP_NUM --app-version $APP_VER --app-dir $APP_DIR  >> $AppLogFile 2>&1
     $RESULT_MSG = -join($RESULT_MSG,"Application $APP_VER $APP_NUM Released to $TGT_DSN`n")
     $RESULT_MSG = -join($RESULT_MSG,"$output`n")
     #Reads Log File and addes to output
